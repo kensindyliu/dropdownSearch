@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Options</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #searchInput {
+      padding: 8px;
+      font-size: 16px;
+      width: 300px;
+      margin-bottom: 15px;
+    }
+
+    #optionsList {
+      list-style: none;
+      padding: 0;
+      max-height: 150px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #optionsList li {
+      padding: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #optionsList li:hover {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Search Options Example</h1>
+
+<!-- Input field for search -->
+<input type="text" id="searchInput" oninput="showOptions()" placeholder="Type something...">
+
+<!-- List to display options -->
+<ul id="optionsList"></ul>
+
+<script>
+  // Sample options array
+  const options = [
+    "kensindy 1",
+    "william 2",
+    "china 3",
+    "www 4",
+    "mitt 5"
+  ];
+
+  // Function to show options based on user input
+  function showOptions() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const optionsList = document.getElementById('optionsList');
+    optionsList.innerHTML = '';
+
+    // Filter options based on user input
+    const filteredOptions = options.filter(option =>
+      option.toLowerCase().includes(input)
+    );
+
+    // Display filtered options
+    filteredOptions.forEach(option => {
+      const li = document.createElement('li');
+      li.textContent = option;
+      li.onclick = () => selectOption(option); // Function to select an option on click
+      optionsList.appendChild(li);
+    });
+  }
+
+  // Function to select an option
+  function selectOption(option) {
+    document.getElementById('searchInput').value = option;
+    document.getElementById('optionsList').innerHTML = '';
+  }
+</script>
+
+</body>
+</html>
